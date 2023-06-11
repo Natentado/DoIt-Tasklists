@@ -4,37 +4,35 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
-import { LoginInfo } from "./LoginInfo";
-import { LoginForm } from "./LoginForm";
+import { SignUpInfo } from "./SignUpInfo";
+import { SignUpForm } from "./SignUpForm";
 
-const signInSchema = yup.object().shape({
+const signUpSchema = yup.object().shape({
+    name: yup.string().required("Nome obrigatório"),
     email: yup.string().required("Email obrigatório").email("Email inválido"),
-    password: yup.string().required("Senha obrigatória")
+    password: yup.string().required("Senha obrigatória"),
+    confirm_password: yup.string().required("Confirmação de senha obrigatória").oneOf([yup.ref("password")], "Senhas diferentes"),
 });
 
-interface SignInData {
+interface SignUpData {
+    name: string,
     email: string,
     password: string
 };
 
-export const Login = () => {
+export const SignUp = () => {
     const [ loading, setLoading ] = useState(false);
-
-    const { signIn } = useAuth();
 
     const {
         formState: { errors },
         register,
         handleSubmit
     } = useForm({
-        resolver: yupResolver(signInSchema)
+        resolver: yupResolver(signUpSchema)
     });
     
-    const handleSignIn = (data: SignInData) => {
-        setLoading(true);
-        signIn(data)
-        .then(_ => setLoading(false))
-        .catch(err => setLoading(false));
+    const handleSignIn = (data: SignUpData) => {
+        console.log(data)
     };
 
     return(
@@ -52,8 +50,8 @@ export const Login = () => {
             color="white" 
         >
             <Flex w={["100%", "100%", "90%", "65%"]} justifyContent="center" flexDirection={["column", "column", "row", "row"]} alignItems="center">
-                <LoginInfo />
-                <LoginForm errors={errors} handleSignIn={handleSubmit(handleSignIn as () => void)} loading={loading} register={register}/>
+                <SignUpForm errors={errors} handleSignUp={handleSubmit(handleSignIn as () => void)} loading={loading} register={register}/>
+                <SignUpInfo />
             </Flex>
         </Flex>
     )
