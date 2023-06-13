@@ -17,14 +17,14 @@ export const SignUpForm = ({handleSignUp, errors, register, loading}: SignUpForm
             onSubmit={handleSignUp}
             as="form"  
             w={["100%", "100%", "40%", "40%"]} 
-            p="30px 15px" 
+            p="40px 25px" 
             mt={["4", "4", "0"]}
             border="3px solid" 
             borderColor="gray.100" 
             bg="white" 
             color="gray.900"
         >
-            <Heading size="lg">Bem vindo de volta!</Heading>
+            <Heading size="lg">Crie sua conta</Heading>
             <VStack spacing="5" mt="6">
                 <Input icon={FaUser} placeholder="Digite seu nome" label="Nome" error={errors.name as {type: string}} {...register("name")} />
                 <Box w="100%">
@@ -34,31 +34,19 @@ export const SignUpForm = ({handleSignUp, errors, register, loading}: SignUpForm
                 <Input icon={FaLock} label="Senha" placeholder="Digite sua senha" type="password" error={errors.password as {type: string}} {...register("password")} />
                 <Input icon={FaLock} label="Confirmação de senha" placeholder="Confirme sua senha" type="password" error={errors.confirm_password as {type: string}} {...register("confirm_password")} />
             </VStack>
-            <VStack mt="4" spacing="5">
-                <Button
-                    isLoading={loading}
-                    bg="purple.800" 
-                    w="100%" 
-                    h="60px" 
-                    borderRadius="8px" 
-                    color="white" 
-                    _hover={{background:"purple.900"}} 
-                    type="submit"
-                >
-                    Entrar
-                </Button>
-                <Text color="gray.400">Ainda não possui uma conta?</Text>
-                <Button
-                    bg="gray.100" 
-                    w="100%" 
-                    h="60px" 
-                    borderRadius="8px" 
-                    color="gray.300" 
-                    _hover={{background:"gray.200"}} 
-                >
-                    Cadastrar
-                </Button>
-            </VStack>
+            <Button
+                isLoading={loading}
+                bg="purple.800" 
+                w="100%" 
+                h="60px"
+                mt="8" 
+                borderRadius="8px" 
+                color="white" 
+                _hover={{background:"purple.900"}} 
+                type="submit"
+            >
+                Finalizar cadastro
+            </Button>
         </Grid>
     )
 };

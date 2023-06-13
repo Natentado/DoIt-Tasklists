@@ -1,6 +1,7 @@
 import { Grid, Heading, VStack, Button, Box, Text } from "@chakra-ui/react";
 import { DeepMap, FieldError, FieldValues, UseFormRegister } from "react-hook-form/dist/types";
 import { FaEnvelope, FaLock } from "react-icons/fa";
+import { useHistory } from "react-router-dom";
 import { Input } from "../../components/Form/Input";
 
 interface LoginFormProps {
@@ -11,6 +12,8 @@ interface LoginFormProps {
 };
 
 export const LoginForm = ({handleSignIn, errors, register, loading}: LoginFormProps) => {
+
+    const history = useHistory();
     
     return (
         <Grid
@@ -52,7 +55,8 @@ export const LoginForm = ({handleSignIn, errors, register, loading}: LoginFormPr
                     h="60px" 
                     borderRadius="8px" 
                     color="gray.300" 
-                    _hover={{background:"gray.200"}} 
+                    _hover={{background:"gray.200"}}
+                    onClick={() => history.push("/signup")} 
                 >
                     Cadastrar
                 </Button>

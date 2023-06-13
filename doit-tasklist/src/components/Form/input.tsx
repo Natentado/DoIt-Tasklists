@@ -56,7 +56,7 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = ({ nam
 
     return(
         <FormControl isInvalid={!!error}>
-            {label ? <FormLabel>{label}</FormLabel> : null}
+            {label ? <FormLabel color={"gray.400"}>{label}</FormLabel> : null}
 
             <InputGroup flexDirection="column">
                 {Icon ?
