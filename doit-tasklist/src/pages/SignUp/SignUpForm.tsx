@@ -16,7 +16,8 @@ export const SignUpForm = ({handleSignUp, errors, register, loading}: SignUpForm
         <Grid
             onSubmit={handleSignUp}
             as="form"  
-            w={["100%", "100%", "40%", "40%"]} 
+            w={["100%", "100%", "40%", "40%"]}
+            maxWidth={["unset", "600px", "600px"]}
             p="40px 25px" 
             mt={["4", "4", "0"]}
             border="3px solid" 

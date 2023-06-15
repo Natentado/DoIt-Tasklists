@@ -7,9 +7,9 @@ import SimpleIcon from "../../assets/simple-icon.svg";
 export const SignUpInfo = () => {
 
     return (
-        <Grid w={["100%", "100%", "50%", "50%"]} h="100%" pl="150px">
+        <Grid w={["100%", "100%", "50%", "50%"]} maxWidth={["600px", "600px", "unset"]} h="100%" pl={[0, 0, "100px"]}>
             <Image src={LogoSecondary} alt="doit" boxSize={["120px", "120px", "150px", "150px"]} />
-            <VStack spacing="14">
+            <VStack spacing={["7", "7", "14"]} mt={["10px", 0]}>
                 <Flex w="100%">
                     <Center borderRadius="5px" bg="white" w="50px" h="50px">
                         <FaForward color={theme.colors.purple[800]} size={25} />
