@@ -28,7 +28,7 @@ export const Menu = ({isOpen, onClose}: MenuProps) => {
                         <Heading as="h2" fontSize="lg">
                             Sair da minha conta
                         </Heading>
-                        <Text color="gray.200" fontSize="small">
+                        <Text color="gray.300" fontSize="small">
                             Sair da minha conta agora
                         </Text>
                     </Box>
