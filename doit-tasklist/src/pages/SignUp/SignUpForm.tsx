@@ -27,13 +27,36 @@ export const SignUpForm = ({handleSignUp, errors, register, loading}: SignUpForm
         >
             <Heading size="lg">Crie sua conta</Heading>
             <VStack spacing="5" mt="6">
-                <Input icon={FaUser} placeholder="Digite seu nome" label="Nome" error={errors.name as {type: string}} {...register("name")} />
+                <Input 
+                    icon={FaUser} 
+                    placeholder="Digite seu nome" 
+                    label="Nome" 
+                    error={errors.name as {type: string}} {...register("name")} 
+                />
                 <Box w="100%">
-                    <Input icon={FaEnvelope} placeholder="Digite seu login" label="Login" type="email" error={errors.email as {type: string}} {...register("email")} />
+                    <Input 
+                        icon={FaEnvelope} 
+                        placeholder="Digite seu login" 
+                        label="Login" 
+                        type="email" 
+                        error={errors.email as {type: string}} {...register("email")} 
+                    />
                     {!errors.email && <Text ml="1" mt="1" color="gray.300">Ex: nome@email.com</Text>}
                 </Box>
-                <Input icon={FaLock} label="Senha" placeholder="Digite sua senha" type="password" error={errors.password as {type: string}} {...register("password")} />
-                <Input icon={FaLock} label="Confirmação de senha" placeholder="Confirme sua senha" type="password" error={errors.confirm_password as {type: string}} {...register("confirm_password")} />
+                <Input 
+                    icon={FaLock} 
+                    label="Senha" 
+                    placeholder="Digite sua senha" 
+                    type="password" 
+                    error={errors.password as {type: string}} {...register("password")} 
+                />
+                <Input 
+                    icon={FaLock} 
+                    label="Confirmação de senha" 
+                    placeholder="Confirme sua senha" 
+                    type="password" 
+                    error={errors.confirm_password as {type: string}} {...register("confirm_password")} 
+                />
             </VStack>
             <Button
                 isLoading={loading}

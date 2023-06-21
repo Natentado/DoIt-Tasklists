@@ -30,10 +30,22 @@ export const LoginForm = ({handleSignIn, errors, register, loading}: LoginFormPr
             <Heading size="lg">Bem vindo de volta!</Heading>
             <VStack spacing="5" mt="6">
                 <Box w="100%">
-                    <Input icon={FaEnvelope} placeholder="Digite seu login" label="Login" type="email" error={errors.email as {type: string}} {...register("email")} />
+                    <Input 
+                        icon={FaEnvelope} 
+                        placeholder="Digite seu login" 
+                        label="Login" 
+                        type="email" 
+                        error={errors.email as {type: string}} {...register("email")} 
+                    />
                     {!errors.email && <Text ml="1" mt="1" color="gray.300">Ex: nome@email.com</Text>}
                 </Box>
-                <Input icon={FaLock} label="Senha" placeholder="Digite sua senha" type="password" error={errors.password as {type: string}} {...register("password")} />
+                <Input 
+                    icon={FaLock} 
+                    label="Senha" 
+                    placeholder="Digite sua senha" 
+                    type="password" 
+                    error={errors.password as {type: string}} {...register("password")} 
+                />
             </VStack>
             <VStack mt="4" spacing="5">
                 <Button

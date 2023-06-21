@@ -51,9 +51,14 @@ export const Login = () => {
             ]} 
             color="white" 
         >
-            <Flex w={["100%", "100%", "90%", "65%"]} justifyContent="center" flexDirection={["column", "column", "row", "row"]} alignItems="center">
+            <Flex 
+                w={["100%", "100%", "90%", "65%"]} 
+                justifyContent="center" 
+                flexDirection={["column", "column", "row", "row"]} 
+                alignItems="center"
+            >
                 <LoginInfo />
-                <LoginForm errors={errors} handleSignIn={handleSubmit(handleSignIn as () => void)} loading={loading} register={register}/>
+                <LoginForm errors={errors} handleSignIn={handleSubmit(handleSignIn as () => void)} loading={loading} register={register} />
             </Flex>
         </Flex>
     )

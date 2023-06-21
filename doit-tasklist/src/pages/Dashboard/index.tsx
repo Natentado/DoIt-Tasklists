@@ -13,7 +13,7 @@ export const Dashboard = () => {
             <Header />
             <SearchBox />
             <Grid w="100%" templateColumns="repeat(auto-fill, minmax(420px, 1fr))" gap={10} mt="8" px="8">
-                {[1,2,3,4,5,6].map(_ => <Card />)}
+                {[1,2,3,4,5,6].map((_, i) => <Card key={i} />)}
             </Grid>
         </Box>
     )

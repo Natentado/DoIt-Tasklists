@@ -1,4 +1,4 @@
-import { Box, Center, Flex, Heading, HStack, Progress, Text } from "@chakra-ui/react"
+import { Box, Center, Flex, Heading, HStack, Progress, Text, theme } from "@chakra-ui/react"
 import { FaCheck, FaTrash } from "react-icons/fa";
 
 const Card = () => {
@@ -18,12 +18,12 @@ const Card = () => {
                 <Heading as="h1" size="md">
                     "lorem ipsum dolor met it at bum"
                 </Heading>
-                <HStack spacing="4">
+                <HStack spacing="4" alignItems="flex-start">
                     <Center as="button" w="30px" h="30px" borderWidth="1px" borderRadius="5px" borderColor="gray.200" bg="white">
-                        <FaTrash color="gray.200" />
+                        <FaTrash color={theme.colors.gray[400]} />
                     </Center>
                     <Center as="button" w="30px" h="30px" borderWidth="1px" borderRadius="5px" borderColor="gray.200" bg="white">
-                        <FaCheck color="gray.200" />
+                        <FaCheck color={theme.colors.gray[400]} />
                     </Center>
                 </HStack>
             </Flex>
