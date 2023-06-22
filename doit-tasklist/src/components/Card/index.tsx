@@ -1,7 +1,18 @@
 import { Box, Center, Flex, Heading, HStack, Progress, Text, theme } from "@chakra-ui/react"
 import { FaCheck, FaTrash } from "react-icons/fa";
 
-const Card = () => {
+interface Task {
+    id: string,
+    title: string,
+    description: string,
+    completed: boolean,
+}
+
+interface CardProps {
+    task: Task;
+};
+
+const Card = ({ task }: CardProps) => {
 
     return (
         <Box 
@@ -16,7 +27,7 @@ const Card = () => {
         >
             <Flex justify="space-between">
                 <Heading as="h1" size="md">
-                    "lorem ipsum dolor met it at bum"
+                    {task.title}
                 </Heading>
                 <HStack spacing="4" alignItems="flex-start">
                     <Center as="button" w="30px" h="30px" borderWidth="1px" borderRadius="5px" borderColor="gray.200" bg="white">
@@ -29,9 +40,9 @@ const Card = () => {
             </Flex>
             <Box w="100%" mt="4">
                 <Text>
-                    Start study kenzie app, for one 1 and a half
+                    {task.description}
                 </Text>
-                <Progress colorScheme="purple" mt="2.5" value={10}>
+                <Progress colorScheme="purple" mt="2.5" value={task.completed ? 100 : 10}>
                     <Text color="gray.200" mt="3">
                         07 march 2021
                     </Text>
