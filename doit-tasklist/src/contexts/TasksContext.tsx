@@ -57,8 +57,6 @@ const TaskProvider = ({children}: TaskProviderProps) => {
             return console.error("Erro mano || Erro API")
         };
 
-        console.log("VE ESSA MERDA PRA VALIDAR OS ERROS", res)
-
         setTasks(prevState => [...tasks, res.data]);
     }, []);
 

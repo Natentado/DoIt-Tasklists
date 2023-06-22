@@ -53,13 +53,11 @@ export const SignUp = () => {
         .then(res => {
             setLoading(false);
             onModalSuccessOpen();
-            console.log(res)
         })
         .catch(err => {
             setLoading(false);
             onModalErrorOpen();
             setError(errorMsgsTranslated[err.response.data as keyof ErrorMessages]??err.response.data);
-            console.log(err)
         });
     };
 
