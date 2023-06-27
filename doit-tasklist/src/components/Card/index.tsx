@@ -1,5 +1,7 @@
 import { Box, Center, Flex, Heading, HStack, Progress, Text, theme } from "@chakra-ui/react"
 import { FaCheck, FaTrash } from "react-icons/fa";
+import { useAuth } from "../../contexts/AuthContext";
+import { useTasks } from "../../contexts/TasksContext";
 
 interface Task {
     id: string,
@@ -13,6 +15,8 @@ interface CardProps {
 };
 
 const Card = ({ task }: CardProps) => {
+    const { deleteTask, updateTask } = useTasks();
+    const { accessToken, user } = useAuth();
 
     return (
         <Box 
@@ -30,11 +34,45 @@ const Card = ({ task }: CardProps) => {
                     {task.title}
                 </Heading>
                 <HStack spacing="4" alignItems="flex-start">
-                    <Center as="button" w="30px" h="30px" borderWidth="1px" borderRadius="5px" borderColor="gray.200" bg="white">
-                        <FaTrash color={theme.colors.gray[400]} />
+                    <Center 
+                        as="button" 
+                        w="30px" 
+                        h="30px" 
+                        borderWidth="1px" 
+                        borderRadius="5px" 
+                        borderColor="gray.200" 
+                        bg="white"
+                        _hover={{
+                            borderColor: "red.700"
+                        }}
+                        sx={{
+                            '&:hover .trashIcon': {
+                              fill: "red.600",
+                            },
+                          }}
+                        onClick={() => deleteTask(task.id, accessToken)}
+                    >
+                        <FaTrash color={theme.colors.gray[400]} className="trashIcon" />
                     </Center>
-                    <Center as="button" w="30px" h="30px" borderWidth="1px" borderRadius="5px" borderColor="gray.200" bg="white">
-                        <FaCheck color={theme.colors.gray[400]} />
+                    <Center 
+                        as="button" 
+                        w="30px" 
+                        h="30px" 
+                        borderWidth="1px" 
+                        borderRadius="5px" 
+                        borderColor="gray.200" 
+                        bg="white"
+                        _hover={{
+                            borderColor: "green.600"
+                        }}
+                        sx={{
+                            '&:hover .checkIcon': {
+                              fill: "green.500",
+                            },
+                          }}
+                        onClick={() => updateTask(task.id, user.id, accessToken)}
+                    >
+                        <FaCheck color={theme.colors.gray[400]} className='checkIcon' />
                     </Center>
                 </HStack>
             </Flex>
