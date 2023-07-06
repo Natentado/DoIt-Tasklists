@@ -33,7 +33,7 @@ const ModalCreateTask = ({ isOpen, onClose }: ModalCreateTaskProps) => {
 
   const { createTask } = useTasks();
   
-  const handleCreateTask = (data: TaskData) => {
+  const handleCreateTask = async (data: TaskData) => {
     const newData = {...data, userId: user.id, completed: false};
 
     createTask(newData, accessToken).then((_) => onClose());
@@ -53,10 +53,10 @@ const ModalCreateTask = ({ isOpen, onClose }: ModalCreateTaskProps) => {
 
         <ModalBody textAlign="center">
             <VStack spacing="5" mt="4">
-                <Input label="Título" error={errors.title as {type: string}} {...register("title")} placeholder="Digite o título" />
+              <Input label="Título" error={errors.title as {type: string}} {...register("title")} placeholder="Digite o título" />
             </VStack>
             <VStack spacing="5">
-                <TextArea label="Descrição" error={errors.description as {type: string}} {...register("description")} placeholder="Digite sua descrição" />
+              <TextArea label="Descrição" error={errors.description as {type: string}} {...register("description")} placeholder="Digite sua descrição" />
             </VStack>
         </ModalBody>
 

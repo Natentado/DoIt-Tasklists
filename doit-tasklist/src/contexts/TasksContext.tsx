@@ -1,5 +1,5 @@
-import { AxiosResponse } from "axios";
 import { createContext, ReactNode, useCallback, useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { api } from "../services/api";
 
 interface TaskProviderProps {
@@ -20,6 +20,9 @@ interface TaskContextData {
     loadTasks: (userId: string, accessToken: string) => Promise<void>,
     deleteTask: (taskId: string, accessToken: string) => Promise<void>;
     updateTask: (taskId: string, userId: string, accessToken: string) => Promise<void>;
+    searchTask: (taskTitle: string, accessToken: string) => Promise<void>;
+    notFound: boolean;
+    taskNotFound: string;
 };
 
 const TaskContext = createContext<TaskContextData>({} as TaskContextData);
@@ -36,6 +39,8 @@ const useTasks = () => {
 
 const TaskProvider = ({children}: TaskProviderProps) => {
     const [ tasks, setTasks ] = useState<Task[]>([]);
+    const [ notFound, setNotFound ] = useState(false);
+    const [ taskNotFound, setTaskNotFound ] = useState("");
 
     const loadTasks = useCallback(async (userId: string, accessToken: string) => {
         try {
@@ -46,9 +51,14 @@ const TaskProvider = ({children}: TaskProviderProps) => {
 
             setTasks(response.data)
         } catch(err) {
+            // if(err === 401){
+                // localStorage.removeItem("@Doit:accessToken");
+                // localStorage.removeItem("@Doit:user");
+                // return window.location.replace("http://localhost:3000/")
+            // }
             console.error("Erro, " + err)
         }
-    }, []);
+    }, [tasks]);
 
     const createTask = useCallback(async (data: Omit<Task, "id">, accessToken: string) => {
         const res = await api.post("/tasks", data, { 
@@ -60,8 +70,8 @@ const TaskProvider = ({children}: TaskProviderProps) => {
             return console.error("Erro mano || Erro API")
         };
 
-        setTasks(prevState => [...tasks, res.data]);
-    }, []);
+        setTasks(prevState => [...tasks, res.data, ]);
+    }, [tasks]);
 
     const deleteTask = useCallback(async (taskId: string, accessToken: string) => {
         await api.delete(`/tasks/${taskId}`,{
@@ -87,8 +97,34 @@ const TaskProvider = ({children}: TaskProviderProps) => {
         }).catch(err => console.error("Erro, " + err));
     }, [tasks]);
 
+    const searchTask = useCallback(async (taskTitle: string, accessToken: string) => {
+        const res = await api.get(`/tasks?title_like=${taskTitle}`, {
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+        }});
+
+        if(!res.data.length){
+            setTaskNotFound(taskTitle);
+            return setNotFound(true);
+        };
+
+        setNotFound(false);
+        setTasks(res.data);
+    }, []);
+
     return (
-        <TaskContext.Provider value={{ createTask, tasks, loadTasks, deleteTask, updateTask}}>
+        <TaskContext.Provider 
+            value={{ 
+                createTask, 
+                tasks, 
+                loadTasks, 
+                deleteTask, 
+                updateTask, 
+                searchTask, 
+                notFound, 
+                taskNotFound
+            }}
+        >
             {children}
         </TaskContext.Provider>
     );

@@ -64,7 +64,8 @@ const TextAreaBase: ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProps>
                 <ChakraTextArea
                     name={name}
                     variant="outline"
-                    h="60px"
+                    h="90px"
+                    maxH="180px"
                     bg="gray.50"
                     borderColor={inputVariation[variation]}
                     color={inputVariation[variation]}

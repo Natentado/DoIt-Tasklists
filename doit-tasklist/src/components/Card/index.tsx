@@ -12,9 +12,10 @@ interface Task {
 
 interface CardProps {
     task: Task;
+    onClick: (task: Task) => void;
 };
 
-const Card = ({ task }: CardProps) => {
+const Card = ({ task, onClick }: CardProps) => {
     const { deleteTask, updateTask } = useTasks();
     const { accessToken, user } = useAuth();
 
@@ -29,7 +30,7 @@ const Card = ({ task }: CardProps) => {
             transition="border 0.2s, ease 0s, transform 0.2s" 
             _hover={{transform: "translateY(-6px)", borderColor: "gray.100"}} 
         >
-            <Flex justify="space-between">
+            <Flex title={task.title} justify="space-between" gap="18px">
                 <Heading as="h1" size="md">
                     {task.title}
                 </Heading>
@@ -76,7 +77,7 @@ const Card = ({ task }: CardProps) => {
                     </Center>
                 </HStack>
             </Flex>
-            <Box w="100%" mt="4">
+            <Box w="100%" mt="4" onClick={() => onClick(task)}>
                 <Text>
                     {task.description}
                 </Text>
