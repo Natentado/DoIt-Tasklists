@@ -12,7 +12,7 @@ interface Task{
     description: string,
     userId: string,
     completed: boolean,
-}
+};
 
 interface TaskContextData {
     tasks: Task[],
@@ -50,13 +50,14 @@ const TaskProvider = ({children}: TaskProviderProps) => {
                 }})
 
             setTasks(response.data)
-        } catch(err) {
-            // if(err === 401){
-                // localStorage.removeItem("@Doit:accessToken");
-                // localStorage.removeItem("@Doit:user");
-                // return window.location.replace("http://localhost:3000/")
-            // }
-            console.error("Erro, " + err)
+        } catch(err: any) {
+            console.error("ERROR, " + err)
+
+            if(err.response.data === "jwt expired"){
+                localStorage.removeItem("@Doit:accessToken");
+                localStorage.removeItem("@Doit:user");
+                return window.location.replace("http://localhost:3000/")
+            };
         }
     }, [tasks]);
 
