@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-import { useAuth } from "../../contexts/AuthContext";
 import { SignUpInfo } from "./SignUpInfo";
 import { SignUpForm } from "./SignUpForm";
 import { GoBackButton } from "./GoBackButton";
@@ -96,14 +95,23 @@ export const SignUp = () => {
                     { isWideVersion ?
                         <>
                             <GoBackButton top="60px" left="24px" />
-                            <SignUpForm errors={errors} handleSignUp={handleSubmit(handleSignUp as () => void)} loading={loading} register={register}/>
+                            <SignUpForm 
+                                errors={errors} 
+                                handleSignUp={handleSubmit(handleSignUp as () => void)} 
+                                loading={loading} 
+                                register={register}
+                            />
                             <SignUpInfo />
                         </>
                     :
                         <>
                             <GoBackButton top="10" left="75vw" />
                             <SignUpInfo />
-                            <SignUpForm errors={errors} handleSignUp={handleSubmit(handleSignUp as () => void)} loading={loading} register={register}/>
+                            <SignUpForm 
+                                errors={errors} 
+                                handleSignUp={handleSubmit(handleSignUp as () => void)} 
+                                loading={loading} register={register}
+                            />
                         </>
                     }
                 </Flex>

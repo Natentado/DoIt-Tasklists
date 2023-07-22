@@ -19,6 +19,8 @@ const Card = ({ task, onClick }: CardProps) => {
     const { deleteTask, updateTask } = useTasks();
     const { accessToken, user } = useAuth();
 
+    console.log(task)
+
     return (
         <Box 
             cursor="pointer"
@@ -62,18 +64,30 @@ const Card = ({ task, onClick }: CardProps) => {
                         borderWidth="1px" 
                         borderRadius="5px" 
                         borderColor="gray.200" 
-                        bg="white"
-                        _hover={{
-                            borderColor: "green.600"
-                        }}
-                        sx={{
-                            '&:hover .checkIcon': {
-                              fill: "green.500",
-                            },
-                          }}
+                        bg={task.completed ?
+                            "purple.600"
+                        :
+                            "white"
+                        }
+                        _hover={!task.completed ?
+                            {
+                                borderColor: "green.600"
+                            }
+                        : {}
+                        }
+                        sx={!task.completed ? 
+                            {
+                                '&:hover .checkIcon': {
+                                    fill: "green.500",
+                                },
+                            } 
+                        : {}}
                         onClick={() => updateTask(task.id, user.id, accessToken)}
                     >
-                        <FaCheck color={theme.colors.gray[400]} className='checkIcon' />
+                        <FaCheck color={task.completed ? 
+                            theme.colors.white
+                        :
+                            theme.colors.gray[400]} className='checkIcon' />
                     </Center>
                 </HStack>
             </Flex>

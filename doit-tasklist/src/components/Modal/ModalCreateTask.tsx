@@ -42,7 +42,15 @@ const ModalCreateTask = ({ isOpen, onClose }: ModalCreateTaskProps) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent as="form" onSubmit={handleSubmit(handleCreateTask as SubmitHandler<FieldValues>)} padding="2" bg="white" color="gray.800">
+      <ModalContent 
+        as="form" 
+        onSubmit={handleSubmit(handleCreateTask as SubmitHandler<FieldValues>)} 
+        ml={["18px", "18px", "unset", "unset"]}
+        mr={["18px", "18px", "unset", "unset"]}
+        padding="2"
+        bg="white" 
+        color="gray.800"
+      >
         <ModalHeader display="flex">
             <Center w="30px" h="30px" borderRadius="6px" bg="purple.500">
               <FaClipboard color={theme.colors.white} />

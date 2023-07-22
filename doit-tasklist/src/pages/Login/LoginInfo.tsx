@@ -4,7 +4,7 @@ import LogoSecondary from "../../assets/logo-secondary.svg";
 export const LoginInfo = () => {
     
     return (
-        <Grid w={["100%", "100%", "50%", "50%"]} pr="100px">
+        <Grid w={["100%", "100%", "50%", "50%"]} pr={[0, 0, "100px", "100px"]}>
             <Image src={LogoSecondary} alt="doit" boxSize={["120px", "120px", "100px", "100px"]} />
             <Heading as="h1" mt="4">O jeito fácil, gratis</Heading>
             <Text mt="24px">

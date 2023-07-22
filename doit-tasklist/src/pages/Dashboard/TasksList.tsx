@@ -19,22 +19,27 @@ interface TasksListProps {
 
 const TasksList = ({isLoading, tasks, handleClick}: TasksListProps) => {
     
-
     return(
         <Box>
             <Header />
             <SearchBox />
-            <Grid 
-                w="100%" 
-                templateColumns="repeat(auto-fill, minmax(420px, 1fr))" 
+            <Grid
+                templateColumns={[
+                    "unset",
+                    "unset",
+                    "repeat(auto-fill, minmax(420px, 1fr))",
+                    "repeat(auto-fill, minmax(420px, 1fr))"
+                ]}
+                justifyContent={["center", "center", "unset", "unset"]}
                 gap={10} 
-                mt="8" 
+                w="100%"
+                mt={["unset", "unset", "8", "8"]}
                 px="8"
             >
                 {isLoading ?
                     <CardSkeleton repeatCount={6} /> 
                 :
-                    tasks.map((task, i) => <Card onClick={handleClick} task={task} key={i} />)}
+                    tasks.map((task, i) => <Card onClick={handleClick} task={task} key={task.id} />)}
             </Grid>
         </Box>
     );

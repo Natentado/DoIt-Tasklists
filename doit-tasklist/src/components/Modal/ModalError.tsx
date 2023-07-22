@@ -12,7 +12,7 @@ const ModalError = ({ isOpen, onClose, error }: ModalErrorProps) => {
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent color="gray.800">
+        <ModalContent color="gray.800" mr={["18px", "18px", "unset", "unset"]} ml={["18px", "18px", "unset", "unset"]}>
           <ModalHeader display="flex">
             <Center w="30px" h="30px" borderRadius="6px" bg="red.600">
               <FaExclamation color={theme.colors.white} />

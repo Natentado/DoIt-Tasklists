@@ -29,7 +29,7 @@ const ModalTaskDetail = ({ isOpen, onClose, task }: ModalTaskDetailProps) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent>
+      <ModalContent mr={["18px", "18px", "unset", "unset"]} ml={["18px", "18px", "unset", "unset"]}>
         <ModalHeader display="flex" justifyContent="space-between">
             <Flex>
                 <Center w="30px" h="30px" borderRadius="6px" bg="purple.500">
@@ -64,19 +64,25 @@ const ModalTaskDetail = ({ isOpen, onClose, task }: ModalTaskDetailProps) => {
                     h="30px" 
                     borderWidth="1px" 
                     borderRadius="5px" 
-                    borderColor="gray.200" 
-                    bg="white"
-                    _hover={{
-                        borderColor: "green.600"
-                    }}
-                    sx={{
-                        '&:hover .checkIcon': {
-                            fill: "green.500",
-                        },
-                        }}
+                    borderColor={!task.completed ? "gray.200" : "transparent"} 
+                    bg={!task.completed ? "white" : "purple.600"}
+                    _hover={!task.completed ? 
+                        {
+                           borderColor: "green.600"
+                        }
+                    : {}
+                    }
+                    sx={!task.completed ? 
+                        {
+                            '&:hover .checkIcon': {
+                                fill: "green.500",
+                            },
+                        }
+                    : {}
+                    }
                     onClick={() => updateTask(task.id, user.id, accessToken)}
                 >
-                    <FaCheck color={theme.colors.gray[400]} className='checkIcon' />
+                    <FaCheck color={!task.completed ? theme.colors.gray[400] : theme.colors.white} className='checkIcon' />
                 </Center>
                 <Center 
                     as="button" 

@@ -14,7 +14,7 @@ const ModalSuccess = ({ isOpen, onClose }: ModalSuccessProps) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent>
+      <ModalContent mr={["18px", "18px", "unset", "unset"]} ml={["18px", "18px", "unset", "unset"]}>
         <ModalHeader display="flex">
             <Center w="30px" h="30px" borderRadius="6px" bg="purple.500">
               <FaExclamation color={theme.colors.white} />

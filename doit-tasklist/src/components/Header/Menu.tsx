@@ -17,14 +17,15 @@ export const Menu = ({isOpen, onClose}: MenuProps) => {
         <DrawerOverlay mt="90px" />
         <DrawerContent 
             top={"-24px !important"} 
-            w={["450px", "350px"]} 
-            mt="90px" 
+            w={["90%", "90%","450px", "350px"]} 
+            mt={["100px", "100px", "90px", "90px"]}
             ml="auto" 
-            mr="60px" 
-            border="1px" 
+            mr={["auto", "auto", "60px", "60px"]} 
+            border="1px"
+            borderRadius="6px" 
             borderColor="#F1F1F1"
         >
-            <DrawerHeader borderBottomWidth='1px' borderColor="gray.50" color="gray.400">
+            <DrawerHeader borderBottomWidth='1px' borderColor="gray.200" color="gray.400">
                 {user.name}
             </DrawerHeader>
             <DrawerBody>
@@ -40,9 +41,9 @@ export const Menu = ({isOpen, onClose}: MenuProps) => {
                     >
                         <FiLogOut color={theme.colors.white} transform="scaleX(-1)" scale="-1"/>
                     </Center>
-                    <Box ml="4">
+                    <Box ml="4" py="12px">
                         <Heading as="h2" fontSize="lg">
-                            Sair da minha conta
+                            Sair da conta
                         </Heading>
                         <Text color="gray.300" fontSize="small">
                             Sair da minha conta agora

@@ -9,8 +9,8 @@ const CardSkeleton = ({repeatCount, ...rest}: CardSkeletonProps) => {
 
     return (
         <>
-            {howMany.map(_ => (
-                <Skeleton {...rest} speed={1} startColor="gray.100" endColor="gray.200">
+            {howMany.map((_, index) => (
+                <Skeleton key={index} {...rest} speed={1} startColor="gray.100" endColor="gray.200">
                     <Box w="300px" h="150px" p="7" />
                 </Skeleton>
             ))}

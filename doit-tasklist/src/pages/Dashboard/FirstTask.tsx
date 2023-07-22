@@ -13,9 +13,10 @@ const FirstTask = () => {
             <Header />
             <Box 
                 justifyContent="center" 
-                w="90vw" 
-                mt="4" 
-                ml="5vh"
+                w="90vw"
+                mt="12" 
+                ml={["auto", "auto", "5vh", "5vh"]}
+                mr={["auto", "auto", "unset", "unset"]}
                 py="16"
                 px={["6", "0"]}
                 borderWidth="2px" 
@@ -26,7 +27,7 @@ const FirstTask = () => {
                 <Center fontSize="5xl">
                     <FaClipboard color="#bdbdbd" />
                 </Center>
-                <Heading as="h1" fontSize="4xl" mt="4">
+                <Heading as="h1" fontSize={["2xl", "2xl" , "4xl", "4xl"]} mt="4">
                     Vamos criar sua primeira tarefa
                 </Heading>
                 <Text color="gray.400" mt="6">
