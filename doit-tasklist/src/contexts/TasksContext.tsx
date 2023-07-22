@@ -1,5 +1,4 @@
 import { createContext, ReactNode, useCallback, useContext, useState } from "react";
-import { useHistory } from "react-router-dom";
 import { api } from "../services/api";
 
 interface TaskProviderProps {
@@ -20,7 +19,7 @@ interface TaskContextData {
     loadTasks: (userId: string, accessToken: string) => Promise<void>,
     deleteTask: (taskId: string, accessToken: string) => Promise<void>;
     updateTask: (taskId: string, userId: string, accessToken: string) => Promise<void>;
-    searchTask: (taskTitle: string, accessToken: string) => Promise<void>;
+    searchTask: (taskTitle: string, accessToken: string, userId: string) => Promise<void>;
     notFound: boolean;
     taskNotFound: string;
 };
@@ -98,8 +97,8 @@ const TaskProvider = ({children}: TaskProviderProps) => {
         }).catch(err => console.error("Erro, " + err));
     }, [tasks]);
 
-    const searchTask = useCallback(async (taskTitle: string, accessToken: string) => {
-        const res = await api.get(`/tasks?title_like=${taskTitle}`, {
+    const searchTask = useCallback(async (taskTitle: string, accessToken: string, userId: string) => {
+        const res = await api.get(`/tasks?userId=${userId}&title_like=${taskTitle}`, {
         headers: {
             Authorization: `Bearer ${accessToken}`,
         }});

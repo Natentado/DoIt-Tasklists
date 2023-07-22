@@ -13,10 +13,10 @@ interface SearchData {
 const SearchBox = ({}) => {
     const { isOpen, onClose, onOpen } = useDisclosure();
     const { searchTask } = useTasks();
-    const { accessToken } = useAuth();
+    const { accessToken, user } = useAuth();
 
     const handleSearch = ({title}: SearchData) => {
-        searchTask(title, accessToken);
+        searchTask(title, accessToken, user.id);
     };
 
     const { register, handleSubmit } = useForm();
