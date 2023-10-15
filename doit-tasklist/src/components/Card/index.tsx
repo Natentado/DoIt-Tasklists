@@ -53,7 +53,7 @@ const Card = ({ task, onClick }: CardProps) => {
                           }}
                         onClick={() => deleteTask(task.id, accessToken)}
                     >
-                        <FaTrash color={theme.colors.gray[400]} className="trashIcon" />
+                    <FaTrash color={theme.colors.gray[400]} className="trashIcon" />
                     </Center>
                     <Center 
                         as="button" 
