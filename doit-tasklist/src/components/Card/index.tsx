@@ -19,8 +19,6 @@ const Card = ({ task, onClick }: CardProps) => {
     const { deleteTask, updateTask } = useTasks();
     const { accessToken, user } = useAuth();
 
-    console.log(task)
-
     return (
         <Box 
             cursor="pointer"

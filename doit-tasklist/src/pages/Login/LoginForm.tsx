@@ -9,12 +9,12 @@ interface LoginFormProps {
     errors: DeepMap<FieldValues, FieldError>;
     register: UseFormRegister<FieldValues>;
     loading: boolean;
+    invalidCredentials: boolean;
 };
 
-export const LoginForm = ({handleSignIn, errors, register, loading}: LoginFormProps) => {
-
+export const LoginForm = ({handleSignIn, errors, register, loading, invalidCredentials}: LoginFormProps) => {
     const history = useHistory();
-    
+        
     return (
         <Grid
             onSubmit={handleSignIn}
@@ -39,13 +39,16 @@ export const LoginForm = ({handleSignIn, errors, register, loading}: LoginFormPr
                     />
                     {!errors.email && <Text ml="1" mt="1" color="gray.300">Ex: nome@email.com</Text>}
                 </Box>
-                <Input 
-                    icon={FaLock} 
-                    label="Senha" 
-                    placeholder="Digite sua senha" 
-                    type="password" 
-                    error={errors.password as {type: string}} {...register("password")} 
-                />
+                <Box w="100%">
+                    <Input
+                        icon={FaLock} 
+                        label="Senha" 
+                        placeholder="Digite sua senha" 
+                        type="password" 
+                        error={errors.password as {type: string}} {...register("password")} 
+                        />
+                    {!!invalidCredentials ? <Text pt="6px" fontWeight="600" color="red.500">Email ou senha incorretos!</Text> : null}
+                </Box>
             </VStack>
             <VStack mt="4" spacing="5">
                 <Button

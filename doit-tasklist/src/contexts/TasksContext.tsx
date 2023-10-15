@@ -1,29 +1,6 @@
 import { createContext, ReactNode, useCallback, useContext, useState } from "react";
 import { api } from "../services/api";
 
-interface TaskProviderProps {
-    children: ReactNode;
-};
-
-interface Task{
-    id: string,
-    title: string,
-    description: string,
-    userId: string,
-    completed: boolean,
-};
-
-interface TaskContextData {
-    tasks: Task[],
-    createTask: (data: Omit<Task, "id">, accesToken: string) => Promise<void>,
-    loadTasks: (userId: string, accessToken: string) => Promise<void>,
-    deleteTask: (taskId: string, accessToken: string) => Promise<void>;
-    updateTask: (taskId: string, userId: string, accessToken: string) => Promise<void>;
-    searchTask: (taskTitle: string, accessToken: string, userId: string) => Promise<void>;
-    notFound: boolean;
-    taskNotFound: string;
-};
-
 const TaskContext = createContext<TaskContextData>({} as TaskContextData);
 
 const useTasks = () => {
@@ -50,8 +27,6 @@ const TaskProvider = ({children}: TaskProviderProps) => {
 
             setTasks(response.data)
         } catch(err: any) {
-            console.error("ERROR, " + err)
-
             if(err.response.data === "jwt expired"){
                 localStorage.removeItem("@Doit:accessToken");
                 localStorage.removeItem("@Doit:user");

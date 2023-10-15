@@ -1,33 +1,5 @@
-import { createContext, ReactNode, useCallback, useContext, useState} from "react";
-
+import { createContext, useCallback, useContext, useState} from "react";
 import { api } from "../services/api";
-
-interface AuthProviderProps {
-    children: ReactNode
-};
-
-interface User {
-    id: string,
-    name: string,
-    email: string,
-};
-
-interface AuthState {
-    accessToken: string,
-    user: User,
-};
-
-interface SignInCrendentials {
-    email: string,
-    password: string,
-};
-
-interface AuthContextData {
-    user: User,
-    accessToken: string,
-    signIn: (credentials: SignInCrendentials) => Promise<void>,
-    signOut: () => void,
-};
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
@@ -41,7 +13,6 @@ const useAuth = () => {
 };
 
 const AuthProvider = ({children}: AuthProviderProps) => {
-
     const [data, setData] = useState<AuthState>(() => {
         const accessToken = localStorage.getItem("@Doit:accessToken");
         const user = localStorage.getItem("@Doit:user");
@@ -54,14 +25,18 @@ const AuthProvider = ({children}: AuthProviderProps) => {
     });
 
     const signIn = useCallback(async ({email, password}: SignInCrendentials) => {
-        const response = await api.post("/login", {email, password});
+        try {
+            const response = await api.post("/login", {email, password});
 
-        const {accessToken, user} = response.data;
+            const { accessToken, user } = response.data;
 
-        localStorage.setItem("@Doit:accessToken", accessToken);
-        localStorage.setItem("@Doit:user", JSON.stringify(user));
+            localStorage.setItem("@Doit:accessToken", accessToken);
+            localStorage.setItem("@Doit:user", JSON.stringify(user));
 
-        setData({accessToken, user});
+            return setData({accessToken, user});
+        } catch (error) {
+            return {response: "Email ou senha incorretos!"};
+        }
     }, []);
 
     const signOut = useCallback(() => {

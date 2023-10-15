@@ -32,7 +32,7 @@ const FirstTask = () => {
                 </Heading>
                 <Text color="gray.400" mt="6">
                     Insira sua meta e mostre a você mesmo <br /> 
-                    sua capacidade em cumprir <Text display="inline" fontWeight="bold" color="gray.900">suas atividades</Text>.
+                    sua capacidade em cumprir <Text as="b" display="inline" fontWeight="bold" color="gray.900">suas atividades</Text>.
                 </Text>
 
                 <Button 

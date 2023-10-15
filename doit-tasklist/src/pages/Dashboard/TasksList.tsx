@@ -39,7 +39,7 @@ const TasksList = ({isLoading, tasks, handleClick}: TasksListProps) => {
                 {isLoading ?
                     <CardSkeleton repeatCount={6} /> 
                 :
-                    tasks.map((task, i) => <Card onClick={handleClick} task={task} key={task.id} />)}
+                    tasks.map((task) => <Card onClick={handleClick} task={task} key={task.id} />)}
             </Grid>
         </Box>
     );

@@ -19,6 +19,7 @@ interface SignInData {
 
 export const Login = () => {
     const [ loading, setLoading ] = useState(false);
+    const [ credentialsError, setCredentialsError ] = useState(false);
 
     const { signIn } = useAuth();
 
@@ -31,9 +32,16 @@ export const Login = () => {
     });
     
     const handleSignIn = (data: SignInData) => {
+        setCredentialsError(false);
         setLoading(true);
         signIn(data)
-        .then(_ => setLoading(false))
+        .then((res: any) => {
+            if(res.response === "Email ou senha incorretos!"){
+                setCredentialsError(true);
+            };
+
+            return setLoading(false);
+        })
         .catch(err => setLoading(false));
     };
 
@@ -58,7 +66,7 @@ export const Login = () => {
                 alignItems="center"
             >
                 <LoginInfo />
-                <LoginForm errors={errors} handleSignIn={handleSubmit(handleSignIn as () => void)} loading={loading} register={register} />
+                <LoginForm invalidCredentials={credentialsError} errors={errors} handleSignIn={handleSubmit(handleSignIn as () => void)} loading={loading} register={register} />
             </Flex>
         </Flex>
     )
